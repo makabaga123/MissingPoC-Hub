@@ -2,51 +2,50 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/PoC-Missing%20PoC%20Supplement-orange" />
-  <img src="https://img.shields.io/badge/Use-Authorized%20Only-red" />
   <img src="https://img.shields.io/badge/Writeups-Reproduction%20Notes-blue" />
+  <img src="https://img.shields.io/badge/Use-Authorized%20Only-red" />
   <img src="https://img.shields.io/badge/Security-Lab%20Only-green" />
 </p>
 
 ## 项目简介
 
-**MissingPoC-Hub** 是一个面向网络安全学习、漏洞复现和授权测试场景的 PoC 补全项目。
+**MissingPoC-Hub** 是一个专注于补充“缺失 PoC 漏洞”的安全研究项目。
 
-在复现 Vulhub、VulnHub、Pikachu、FOFA 公开漏洞环境、CTF 靶场或其他漏洞复现平台时，经常会遇到一些漏洞环境已经存在、漏洞描述也能找到，但缺少清晰可用 PoC 的情况。
+在复现 Vulhub、CNVD、公开漏洞复现平台、靶场环境或安全文章中的漏洞时，经常会遇到一种情况：漏洞环境、漏洞描述或漏洞编号已经存在，但缺少清晰可用的 PoC，或者现有复现资料不够完整。
 
-本项目主要用于收集和补充这类“缺少 PoC 的漏洞”，为其编写最小化验证脚本，并附带对应的漏洞复现 Writeup。
+本项目主要用于收集这类缺少 PoC 的漏洞，并为每个漏洞补充：
 
-本项目不会维护漏洞环境，也不会重复搭建靶场。如果某个漏洞来自 Vulhub、VulnHub 或其他平台，请优先参考原平台完成环境搭建。本仓库只关注：
-
-* PoC 编写
+* PoC 编写思路
+* 最小化 PoC 脚本
 * 漏洞复现步骤
-* 触发过程分析
-* 关键请求说明
-* 漏洞原理理解
-* 修复建议整理
+* 复现截图
+
+本项目不提供漏洞环境，不维护 Docker 环境，也不重复搬运靶场文件。如果漏洞来源于 Vulhub、CNVD、其他公开平台或文章环境，请自行前往原平台搭建对应环境。本仓库只关注 PoC 编写和复现过程记录。
 
 ## 项目定位
 
 本项目不是漏洞利用武器库，也不是批量扫描工具集合。
 
-本项目的目标是记录：
+本项目的核心目标是：
 
-1. 某个漏洞为什么可以被触发。
-2. PoC 应该如何从漏洞原理中推导出来。
-3. 如何在本地靶场或授权环境中验证漏洞。
-4. 如何用最小化、无害化的方式证明漏洞存在。
-5. 如何把复现过程整理成清晰的 Writeup。
+1. 记录没有公开 PoC 或 PoC 不完整的漏洞。
+2. 编写最小化、可读、可复现的 PoC 脚本。
+3. 整理漏洞复现步骤，方便学习和回顾。
+4. 分析 PoC 的构造思路，而不是只堆脚本。
+5. 帮助安全学习者理解漏洞触发过程和 PoC 编写方法。
 
 ## 适用场景
 
 本项目适用于：
 
-* 网络安全学习
-* CVE 漏洞复现
-* Web 漏洞分析
+* CVE 漏洞复现学习
+* CNVD 漏洞复现学习
+* Vulhub 漏洞 PoC 补充
+* Web 安全漏洞分析
+* 组件漏洞复现
 * PoC 编写练习
-* Vulhub 等靶场平台的 PoC 补充
 * 安全研究笔记沉淀
-* 面试或简历项目展示
+* 个人安全项目展示
 
 本项目不适用于：
 
@@ -59,26 +58,6 @@
 * 横向移动
 * 恶意利用第三方系统
 
-## 项目特点
-
-* **只放 PoC 和 Writeup**
-  本仓库不维护漏洞环境。环境请参考 Vulhub、VulnHub 或其他原始靶场平台。
-
-* **多平台收集**
-  不局限于 Vulhub，也可以包含其他平台中缺少 PoC 或复现资料不完整的漏洞。
-
-* **最小化验证**
-  PoC 只用于证明漏洞是否存在，默认不包含攻击后利用逻辑。
-
-* **复现过程清晰**
-  每个漏洞尽量包含环境来源、复现步骤、关键请求、触发结果和截图说明。
-
-* **重视 PoC 编写思路**
-  不只是给出脚本，还会解释 PoC 是如何从漏洞描述、请求参数、源码逻辑或补丁分析中推导出来的。
-
-* **安全边界明确**
-  默认面向本地靶场和授权测试，不提供批量攻击、公网扫描或恶意 Payload。
-
 ## 仓库结构
 
 ```text
@@ -87,36 +66,22 @@
 │   └── CVE-YYYY-NNNN/
 │       ├── README.md
 │       ├── poc.py
-│       ├── requirements.txt
+│       ├── writeups.md
 │       └── screenshots/
 │
-├── VulnHub/
-│   └── CVE-YYYY-NNNN/
+├── CNVD/
+│   └── CNVD-YYYY-NNNN/
 │       ├── README.md
 │       ├── poc.py
-│       ├── requirements.txt
-│       └── screenshots/
-│
-├── CTF-Platforms/
-│   └── Vulnerability-ID/
-│       ├── README.md
-│       ├── poc.py
+│       ├── writeups.md
 │       └── screenshots/
 │
 ├── Other-Platforms/
 │   └── CVE-YYYY-NNNN/
 │       ├── README.md
 │       ├── poc.py
-│       ├── requirements.txt
+│       ├── writeups.md
 │       └── screenshots/
-│
-├── templates/
-│   ├── writeup-template.md
-│   └── poc-template.py
-│
-├── docs/
-│   ├── poc-writing-guide.md
-│   └── reproduction-notes.md
 │
 ├── DISCLAIMER.md
 ├── CONTRIBUTING.md
@@ -129,7 +94,7 @@
 
 ### `Vulhub/`
 
-用于存放来自 Vulhub 平台，但原环境中缺少 PoC 或复现过程不够完整的漏洞。
+用于存放来自 Vulhub 平台，但原环境中缺少 PoC 或复现资料不完整的漏洞。
 
 示例：
 
@@ -138,38 +103,137 @@ Vulhub/
 └── CVE-202X-XXXX/
     ├── README.md
     ├── poc.py
+    ├── writeups.md
     └── screenshots/
 ```
 
-### `VulnHub/`
+### `CNVD/`
 
-用于存放来自 VulnHub 或类似虚拟机靶场平台的漏洞复现 PoC 和 Writeup。
+用于存放 CNVD 相关漏洞的 PoC 和复现 Writeup。
 
-### `CTF-Platforms/`
+如果漏洞同时存在 CVE 编号和 CNVD 编号，可以根据主要来源选择目录命名方式。推荐优先使用 CNVD 编号，例如：
 
-用于存放来自 CTF、攻防演练靶场或练习平台中的漏洞验证脚本和复现笔记。
-
-如果没有明确 CVE 编号，可以使用漏洞名称、题目名称或平台编号作为目录名。
+```text
+CNVD/
+└── CNVD-202X-XXXX/
+    ├── README.md
+    ├── poc.py
+    ├── writeups.md
+    └── screenshots/
+```
 
 ### `Other-Platforms/`
 
-用于存放其他公开漏洞复现平台、文章环境或自行搭建测试环境中发现的缺失 PoC 案例。
+用于存放其他平台、文章环境、公开靶场或自行复现过程中遇到的缺失 PoC 漏洞。
 
-### `templates/`
+如果漏洞有 CVE 编号，建议使用 CVE 编号命名：
 
-用于存放统一的 Writeup 模板和 PoC 模板，方便后续保持项目格式一致。
+```text
+Other-Platforms/
+└── CVE-202X-XXXX/
+    ├── README.md
+    ├── poc.py
+    ├── writeups.md
+    └── screenshots/
+```
 
-### `docs/`
+如果漏洞没有明确 CVE 编号，可以使用漏洞名称或平台编号命名：
 
-用于记录 PoC 编写规范、漏洞复现方法论、抓包分析思路等通用内容。
+```text
+Other-Platforms/
+└── product-name-unauth-file-read/
+    ├── README.md
+    ├── poc.py
+    ├── writeups.md
+    └── screenshots/
+```
+
+## 单个漏洞目录规范
+
+每个漏洞目录固定包含四个核心部分：
+
+```text
+CVE-YYYY-NNNN/
+├── README.md
+├── poc.py
+├── writeups.md
+└── screenshots/
+```
+
+### `README.md`
+
+用于记录 **PoC 编写思路**。
+
+建议包含：
+
+* 漏洞基本信息
+* 漏洞入口分析
+* 关键参数说明
+* Payload 构造思路
+* PoC 编写过程
+* 漏洞判断逻辑
+* 修复建议
+* 参考链接
+
+`README.md` 重点写“这个 PoC 是怎么想出来、怎么写出来的”。
+
+### `poc.py`
+
+用于存放 **最小化 PoC 脚本**。
+
+PoC 应该尽量保持：
+
+* 简洁
+* 可读
+* 可复现
+* 无害化
+* 只用于验证漏洞是否存在
+
+不建议默认包含：
+
+* 反弹 Shell
+* 批量扫描
+* 后门植入
+* 凭据窃取
+* 破坏性命令
+* 持久化逻辑
+
+### `writeups.md`
+
+用于记录 **完整复现步骤**。
+
+建议包含：
+
+* 环境来源
+* 环境启动方式
+* 目标访问地址
+* 漏洞触发流程
+* PoC 运行方式
+* 复现结果
+* 遇到的问题
+* 复现总结
+
+`writeups.md` 重点写“别人如何一步一步复现这个漏洞”。
+
+### `screenshots/`
+
+用于存放 **复现过程截图**。
+
+建议截图包括：
+
+* 靶场环境启动成功截图
+* 漏洞页面截图
+* 请求包截图
+* PoC 运行结果截图
+* 漏洞触发成功截图
 
 ## 漏洞索引
 
-| 平台              | 漏洞编号          | 漏洞类型          | 影响组件            | PoC | Writeup | 状态  |
-| --------------- | ------------- | ------------- | --------------- | --- | ------- | --- |
-| Vulhub          | CVE-YYYY-NNNN | RCE           | Example Product | ✅   | ✅       | 已完成 |
-| Vulhub          | CVE-YYYY-NNNN | SSRF          | Example Product | 🚧  | 🚧      | 编写中 |
-| Other-Platforms | CVE-YYYY-NNNN | SQL Injection | Example Product | ✅   | ✅       | 已完成 |
+| 平台              | 漏洞编号           | 漏洞类型 | 影响组件            | PoC | Writeup | 状态  |
+| --------------- | -------------- | ---- | --------------- | --- | ------- | --- |
+| Vulhub          | CVE-YYYY-NNNN  | RCE  | Example Product | ✅   | ✅       | 已完成 |
+| CNVD            | CNVD-YYYY-NNNN | 文件读取 | Example Product | ✅   | ✅       | 已完成 |
+| Other-Platforms | CVE-YYYY-NNNN  | SSRF | Example Product | 🚧  | 🚧      | 编写中 |
 
 状态说明：
 
@@ -177,60 +241,12 @@ Vulhub/
 * 🚧 编写中
 * ❌ 暂未完成
 
-## 单个漏洞目录结构
-
-每个漏洞目录建议保持如下结构：
-
-```text
-CVE-YYYY-NNNN/
-├── README.md
-├── poc.py
-├── requirements.txt
-└── screenshots/
-```
-
-如果 PoC 不需要额外依赖，可以不放 `requirements.txt`。
-
-如果漏洞没有 CVE 编号，可以使用平台漏洞编号或漏洞名称，例如：
-
-```text
-SomePlatform/
-└── unauth-file-read-example/
-    ├── README.md
-    ├── poc.py
-    └── screenshots/
-```
-
-## 单个漏洞 Writeup 内容
-
-每个漏洞的 `README.md` 建议包含以下内容：
-
-1. 漏洞基本信息
-2. 环境来源
-3. 影响版本
-4. 漏洞类型
-5. 复现前提
-6. 复现步骤
-7. PoC 使用方式
-8. PoC 编写思路
-9. 关键请求分析
-10. 触发结果截图
-11. 漏洞原理分析
-12. 修复建议
-13. 参考链接
-
 ## PoC 使用方式
 
 进入对应漏洞目录：
 
 ```bash
 cd Vulhub/CVE-YYYY-NNNN
-```
-
-安装依赖：
-
-```bash
-pip install -r requirements.txt
 ```
 
 运行 PoC：
@@ -242,6 +258,8 @@ python3 poc.py --url http://127.0.0.1:8080
 预期输出示例：
 
 ```text
+[+] Target: http://127.0.0.1:8080
+[+] Checking vulnerability...
 [+] Target appears vulnerable
 ```
 
@@ -251,20 +269,20 @@ python3 poc.py --url http://127.0.0.1:8080
 
 本项目中的 PoC 应遵循以下原则：
 
-1. PoC 应保持最小化，只用于验证漏洞是否存在。
-2. 默认目标应为本地靶场地址，例如 `127.0.0.1`、`localhost` 或内网测试地址。
-3. 不提供公网批量扫描功能。
-4. 不默认包含反弹 Shell。
-5. 不包含后门、木马、持久化或凭据窃取逻辑。
-6. Payload 应尽量无害化。
-7. 代码应清晰、可读、可复现。
-8. 每个关键参数和请求都应在 Writeup 中解释清楚。
-9. 尽量说明 PoC 的构造过程，而不是只给最终脚本。
-10. 尽量附带修复建议和参考资料。
+1. PoC 只用于验证漏洞是否存在。
+2. 默认面向本地靶场或授权测试环境。
+3. 默认目标建议为 `127.0.0.1`、`localhost` 或内网测试地址。
+4. 不提供公网批量扫描功能。
+5. 不默认提供反弹 Shell。
+6. 不包含后门、木马、持久化或凭据窃取逻辑。
+7. Payload 应尽量无害化。
+8. 代码应清晰、可读、可复现。
+9. 每个关键参数和 Payload 都应在 `README.md` 中说明。
+10. 每个漏洞都应在 `writeups.md` 中提供完整复现步骤。
 
-## 推荐 PoC 风格
+## 推荐 PoC 输出格式
 
-PoC 应尽量使用清晰的命令行参数，例如：
+建议 PoC 使用清晰的命令行参数：
 
 ```bash
 python3 poc.py --url http://127.0.0.1:8080
@@ -274,15 +292,19 @@ python3 poc.py --url http://127.0.0.1:8080
 
 ```text
 [+] Target: http://127.0.0.1:8080
-[+] Checking vulnerability...
+[+] Sending payload...
 [+] Target appears vulnerable
 ```
 
-不建议默认执行高风险命令或破坏性操作。
+如果验证失败：
 
-## Writeup 模板
+```text
+[-] Target does not appear vulnerable
+```
 
-````markdown
+## 单个漏洞 README.md 推荐结构
+
+```markdown
 # CVE-YYYY-NNNN - 漏洞名称
 
 ## 1. 漏洞信息
@@ -292,97 +314,136 @@ python3 poc.py --url http://127.0.0.1:8080
 - 影响组件：
 - 影响版本：
 - 环境来源：
-- 复现平台：
 - PoC 语言：
 
 ## 2. 漏洞简介
 
-简要说明漏洞背景、漏洞影响和触发条件。
+简要说明漏洞背景、影响范围和触发条件。
 
-## 3. 环境来源
+## 3. PoC 编写思路
 
-说明该漏洞环境来自哪个平台，例如：
+说明这个 PoC 是如何推导出来的，例如：
 
-- Vulhub
-- VulnHub
-- CTF 平台
-- 公开文章环境
-- 自行搭建测试环境
+- 漏洞入口在哪里
+- 哪些参数可控
+- 关键请求是什么
+- Payload 为什么这样构造
+- 如何判断漏洞触发成功
+- PoC 中每一步对应的漏洞逻辑是什么
 
-本仓库不提供环境文件，请参考原平台完成环境搭建。
+## 4. 关键代码说明
 
-## 4. 复现步骤
+解释 `poc.py` 中的关键代码逻辑。
 
-记录完整复现流程，包括访问路径、关键请求、参数构造和触发结果。
+## 5. 漏洞原理分析
 
-## 5. PoC 使用
+说明漏洞产生的原因，例如：
 
-说明 PoC 的运行方式和参数含义。
+- 输入校验不足
+- 权限控制缺失
+- 文件路径过滤不严
+- 模板注入
+- 反序列化风险
+- 命令拼接导致 RCE
+- SSRF 目标限制不严
 
-```bash
-python3 poc.py --url http://127.0.0.1:8080
-````
-
-## 6. PoC 编写思路
-
-说明 PoC 是如何写出来的，例如：
-
-* 漏洞入口在哪里
-* 关键参数是什么
-* Payload 为什么这样构造
-* 如何判断漏洞是否触发
-* 哪些报错或响应可以作为漏洞存在的依据
-
-## 7. 关键请求分析
-
-可以放 HTTP 请求包、响应包或抓包截图。
-
-## 8. 漏洞原理分析
-
-说明漏洞产生的根本原因，例如：
-
-* 输入校验不足
-* 权限控制缺失
-* 反序列化风险
-* 模板注入
-* 文件读取限制绕过
-* 命令拼接导致 RCE
-* SSRF 目标限制不严
-
-## 9. 修复建议
+## 6. 修复建议
 
 给出修复方式，例如：
 
-* 升级到安全版本
-* 增加权限校验
-* 限制危险函数
-* 过滤用户输入
-* 禁用不必要功能
-* 增加网络访问控制
+- 升级到安全版本
+- 增加权限校验
+- 限制危险函数
+- 过滤用户输入
+- 禁用不必要功能
+- 增加网络访问控制
 
-## 10. 参考链接
+## 7. 参考链接
 
-* 官方公告：
-* NVD：
-* 原始环境：
-* 补丁链接：
-* 参考文章：
+- 官方公告：
+- CVE / CNVD：
+- 原始环境：
+- 补丁链接：
+- 参考文章：
+```
+
+## 单个漏洞 writeups.md 推荐结构
+
+````markdown
+# CVE-YYYY-NNNN - 复现步骤
+
+## 1. 环境来源
+
+说明漏洞环境来自哪里，例如：
+
+- Vulhub
+- CNVD 公开漏洞环境
+- 其他公开靶场
+- 安全文章环境
+- 自行搭建测试环境
+
+本仓库不提供环境文件，请参考原始平台完成环境搭建。
+
+## 2. 环境启动
+
+记录环境启动方式，例如：
+
+```bash
+docker compose up -d
+````
+
+## 3. 访问目标
+
+记录目标地址：
+
+```text
+http://127.0.0.1:8080
+```
+
+## 4. 漏洞复现
+
+记录手工复现过程，包括请求路径、参数、Payload 和响应结果。
+
+## 5. PoC 验证
+
+运行 PoC：
+
+```bash
+python3 poc.py --url http://127.0.0.1:8080
+```
+
+## 6. 复现结果
+
+说明漏洞是否成功触发，并附上截图。
+
+## 7. 问题记录
+
+记录复现过程中遇到的问题，例如：
+
+* 环境启动失败
+* 端口冲突
+* 依赖问题
+* Payload 无回显
+* 版本不匹配
+
+## 8. 复现总结
+
+总结漏洞触发条件、验证方式和复现注意事项。
 
 ```
 
 ## 贡献指南
 
-欢迎提交新的缺失 PoC、复现 Writeup 或对已有内容进行改进。
+欢迎提交新的缺失 PoC、复现 Writeup 或对已有内容进行完善。
 
 提交内容建议包括：
 
 - 明确的平台来源
 - 明确的漏洞编号或漏洞名称
-- 可运行的最小化 PoC
-- 清晰的复现步骤
-- PoC 编写思路
-- 漏洞原理分析
-- 修复建议
+- `README.md`：PoC 编写思路
+- `poc.py`：最小化 PoC 脚本
+- `writeups.md`：完整复现步骤
+- `screenshots/`：复现截图
 - 参考链接
 
 不接受以下内容：
@@ -398,13 +459,12 @@ python3 poc.py --url http://127.0.0.1:8080
 ## 后续计划
 
 - [ ] 整理 Vulhub 中缺少 PoC 的漏洞
+- [ ] 整理 CNVD 相关漏洞的 PoC 和复现步骤
 - [ ] 补充其他平台中的缺失 PoC 案例
-- [ ] 建立统一 PoC 模板
-- [ ] 建立统一 Writeup 模板
+- [ ] 建立统一的单漏洞目录规范
+- [ ] 建立统一的 PoC 编写规范
 - [ ] 增加漏洞类型索引
-- [ ] 增加 PoC from Scratch 系列笔记
-- [ ] 增加补丁分析记录
-- [ ] 增加抓包分析示例
+- [ ] 增加 PoC from Scratch 系列记录
 - [ ] 增加 Web 安全、云原生安全、组件漏洞分类
 
 ## 免责声明
